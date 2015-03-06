@@ -8,7 +8,7 @@
     -->
 
     <!-- Inherit DefaultWidgetSet -->
-    <inherits name='com.google.gwt.user.theme.standard.Standard'/>
+    <!--<inherits name='com.google.gwt.user.theme.standard.Standard'/>-->
     <inherits name="com.vaadin.DefaultWidgetSet"/>
     <stylesheet src="autocomplete/styles.css"/>
 
