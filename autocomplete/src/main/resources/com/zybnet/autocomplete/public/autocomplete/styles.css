@@ -1,7 +1,10 @@
 .gwt-SuggestBoxPopup {
-  border: 2px solid #D5E2FF;
-  background: white;
-  margin-left: 3px;
+    border: 2px solid #D5E2FF;
+    background: white;
+    margin-left: 3px;
+    font-family: Arial, Helvetica, Tahoma, Verdana, sans-serif;
+    font-size: 12px;
+    white-space: nowrap;
 }
 
 .gwt-SuggestBox {
@@ -13,8 +16,10 @@
     color: #424242;
     cursor: default;
 }
+
 .gwt-SuggestBoxPopup .item-selected {
     background: #b7d6f6;
 }
+
 
 

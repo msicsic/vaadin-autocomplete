@@ -6,10 +6,15 @@ import java.io.Serializable;
 public class AutocompleteFieldSuggestion implements Serializable {
 
     private Integer id;
-    private String displayString;
+    private String value;
+    private String displayValue;
 
-    public String getDisplayString() {
-        return displayString;
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
     public Integer getId() {
@@ -20,8 +25,12 @@ public class AutocompleteFieldSuggestion implements Serializable {
         this.id = id;
     }
 
-    public void setDisplayString(String displayString) {
-        this.displayString = displayString;
+    public String getDisplayValue() {
+        return displayValue;
+    }
+
+    public void setDisplayValue(String displayValue) {
+        this.displayValue = displayValue;
     }
 
 }

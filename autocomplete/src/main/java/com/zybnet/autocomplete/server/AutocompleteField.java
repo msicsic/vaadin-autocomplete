@@ -1,7 +1,5 @@
 package com.zybnet.autocomplete.server;
 
-import com.vaadin.event.FieldEvents;
-import com.vaadin.ui.AbstractField;
 import com.vaadin.ui.AbstractTextField;
 import com.zybnet.autocomplete.shared.AutocompleteFieldSuggestion;
 import com.zybnet.autocomplete.shared.AutocompleteServerRpc;
@@ -30,24 +28,6 @@ public class AutocompleteField<E> extends AbstractTextField implements Autocompl
         items = new HashMap<Integer, E>();
     }
 
-//    public void addBlurListener(FieldEvents.BlurListener listener) {
-//        addListener(FieldEvents.BlurEvent.EVENT_ID, FieldEvents.BlurEvent.class, listener,
-//                FieldEvents.BlurListener.blurMethod);
-//    }
-//
-//    public void removeBlurListener(FieldEvents.BlurListener listener) {
-//        removeListener(FieldEvents.BlurEvent.EVENT_ID, FieldEvents.BlurEvent.class, listener);
-//    }
-//
-//    public void addFocusListener(FieldEvents.FocusListener listener) {
-//        addListener(FieldEvents.FocusEvent.EVENT_ID, FieldEvents.FocusEvent.class, listener,
-//                FieldEvents.FocusListener.focusMethod);
-//    }
-//
-//    public void removeFocusListener(FieldEvents.FocusListener listener) {
-//        removeListener(FieldEvents.FocusEvent.EVENT_ID, FieldEvents.FocusEvent.class, listener);
-//    }
-
     @Override
     public AutocompleteState getState() {
         return (AutocompleteState) super.getState();
@@ -66,7 +46,7 @@ public class AutocompleteField<E> extends AbstractTextField implements Autocompl
 
     @Override
     public void onSuggestionPicked(AutocompleteFieldSuggestion suggestion) {
-        setText(suggestion.getDisplayString());
+        setValue(suggestion.getValue());
         if (suggestionPickedListener != null)
             suggestionPickedListener.onSuggestionPicked(items.get(suggestion.getId()));
     }
@@ -79,14 +59,6 @@ public class AutocompleteField<E> extends AbstractTextField implements Autocompl
         getState().delayMillis = delayMillis;
     }
 
-    public void setText(String text) {
-        getState().text = text;
-    }
-
-    public String getText() {
-        return getState().text;
-    }
-
     public void setTabIndex(int tabIdx) {
         getState().tabIndex = tabIdx;
     }
@@ -95,13 +67,14 @@ public class AutocompleteField<E> extends AbstractTextField implements Autocompl
         getState().enabled = enabled;
     }
 
-    public void addSuggestion(E id, String title) {
+    public void addSuggestion(E id, String value, String displayedValue) {
         int index = getState().suggestions.size();
         items.put(index, id);
         List<AutocompleteFieldSuggestion> newSuggestionList = new ArrayList<AutocompleteFieldSuggestion>(getState().suggestions);
         AutocompleteFieldSuggestion suggestion = new AutocompleteFieldSuggestion();
         suggestion.setId(index);
-        suggestion.setDisplayString(title);
+        suggestion.setValue(value);
+        suggestion.setDisplayValue(displayedValue);
         newSuggestionList.add(suggestion);
         getState().suggestions = newSuggestionList;
     }

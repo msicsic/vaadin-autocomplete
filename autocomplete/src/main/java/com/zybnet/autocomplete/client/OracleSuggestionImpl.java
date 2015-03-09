@@ -10,7 +10,7 @@ public class OracleSuggestionImpl implements Suggestion {
 
     public OracleSuggestionImpl(AutocompleteFieldSuggestion wrappedSuggestion) {
         this.wrappedSuggestion = wrappedSuggestion;
-        this.displayString = wrappedSuggestion.getDisplayString();
+        this.displayString = wrappedSuggestion.getDisplayValue();
     }
 
     @Override
@@ -20,7 +20,7 @@ public class OracleSuggestionImpl implements Suggestion {
 
     @Override
     public String getReplacementString() {
-        return displayString;
+        return wrappedSuggestion.getValue();
     }
 
     public AutocompleteFieldSuggestion getWrappedSuggestion() {

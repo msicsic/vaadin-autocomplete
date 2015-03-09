@@ -44,6 +44,7 @@ public class VAutocompleteField extends Composite implements KeyUpHandler, Focus
         suggestionsDisplay = new SimpleSuggestionsDisplay(this);
         textField = GWT.create(VTextField.class);
         suggestBox = new SuggestBox(oracle, textField, suggestionsDisplay);
+        suggestBox.setAutoSelectEnabled(false);
         initWidget(suggestBox);
         suggestBox.getValueBox().addKeyUpHandler(this);
         setStyleName(CLASSNAME);
