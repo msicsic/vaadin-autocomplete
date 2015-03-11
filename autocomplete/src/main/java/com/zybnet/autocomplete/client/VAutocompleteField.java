@@ -79,6 +79,11 @@ public class VAutocompleteField extends Composite implements KeyUpHandler, Focus
                 }
             }
         }
+
+        @Override
+        public boolean isDisplayStringHTML() {
+            return true;
+        }
     }
 
     private void scheduleQuery(final String query) {

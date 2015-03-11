@@ -90,7 +90,7 @@ public class DevUI extends UI {
 
     private void handleSearchQuery(AutocompleteField<Integer> field, String query) {
         for (int i = 0; i < 10; i++) {
-            field.addSuggestion(i, i + ": " + query, i + ": " + query+ "_displayed");
+            field.addSuggestion(i, query, "<html><b>"+i + "</b>: " + query+ "_displayed </html>");
         }
     }
 
