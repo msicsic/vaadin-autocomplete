@@ -22,7 +22,7 @@ public class SimpleSuggestionsDisplay extends SuggestBox.DefaultSuggestionDispla
     public PopupPanel createPopup() {
         VOverlay popup = GWT.create(VOverlay.class);
         popup.setOwner(widget);
-        popup.setStyleName("gwt-SuggestBoxPopup");
+        popup.setStyleName("v-suggestBoxPopup");
         popup.setAutoHideEnabled(true);
         return popup;
     }

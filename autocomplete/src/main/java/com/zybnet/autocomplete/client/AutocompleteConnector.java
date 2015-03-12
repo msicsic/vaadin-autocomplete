@@ -15,7 +15,8 @@ import com.zybnet.autocomplete.shared.AutocompleteState;
 
 @Connect(AutocompleteField.class)
 @SuppressWarnings("serial")
-public class AutocompleteConnector extends AbstractComponentConnector implements VAutocompleteField.QueryListener, VAutocompleteField.TextChangeListener, SelectionHandler<Suggestion> {
+public class AutocompleteConnector extends AbstractComponentConnector
+        implements VAutocompleteField.QueryListener, VAutocompleteField.TextChangeListener, SelectionHandler<Suggestion> {
 
     private final AutocompleteServerRpc serverComponent;
 
@@ -41,16 +42,6 @@ public class AutocompleteConnector extends AbstractComponentConnector implements
         return (AutocompleteState) super.getState();
     }
 
-    @OnStateChange("suggestions")
-    private void updateSuggestions() {
-        getWidget().setSuggestions(getState().suggestions);
-    }
-
-    @OnStateChange("delayMillis")
-    private void updateDelayMillis() {
-        getWidget().setDelayMillis(getState().delayMillis);
-    }
-
     @OnStateChange("tabIndex")
     private void setTabIndex() {
         getWidget().setTabIndex(getState().tabIndex);
@@ -63,7 +54,7 @@ public class AutocompleteConnector extends AbstractComponentConnector implements
 
     @OnStateChange("text")
     void setText() {
-        getWidget().setDisplayedText(getState().text);
+        getWidget().setText(getState().text);
     }
 
     @Override

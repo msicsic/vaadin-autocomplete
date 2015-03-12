@@ -22,8 +22,6 @@ import java.util.List;
 
 public class VAutocompleteField extends Composite implements KeyUpHandler, Focusable {
 
-    public static final String CLASSNAME = "v-textfield";
-
     private final SuggestOracle oracle;
     private final SimpleSuggestionsDisplay suggestionsDisplay;
     private final VTextField textField;
@@ -47,7 +45,6 @@ public class VAutocompleteField extends Composite implements KeyUpHandler, Focus
         suggestBox.setAutoSelectEnabled(false);
         initWidget(suggestBox);
         suggestBox.getValueBox().addKeyUpHandler(this);
-        setStyleName(CLASSNAME);
     }
 
     @Override
@@ -114,12 +111,23 @@ public class VAutocompleteField extends Composite implements KeyUpHandler, Focus
 
     }
 
+    /* delegated call */
     public void setSuggestions(List<AutocompleteFieldSuggestion> suggestions) {
         isInitiatedFromServer = true;
         this.suggestions = Collections.unmodifiableList(suggestions);
         suggestBox.refreshSuggestionList();
         suggestBox.showSuggestionList();
         isInitiatedFromServer = false;
+    }
+
+    /* delegated call */
+    public void setDelayMillis(int delayMillis) {
+        this.delayMillis = delayMillis;
+    }
+
+    /* delegated call */
+    public void setText(String text) {
+        suggestBox.getValueBox().setText(text);
     }
 
     public void addSelectionHandler(SelectionHandler<Suggestion> handler) {
@@ -136,14 +144,6 @@ public class VAutocompleteField extends Composite implements KeyUpHandler, Focus
 
     public interface TextChangeListener {
         void onTextChange(String text);
-    }
-
-    public void setDelayMillis(int delayMillis) {
-        this.delayMillis = delayMillis;
-    }
-
-    public void setDisplayedText(String text) {
-        suggestBox.getValueBox().setText(text);
     }
 
     public void addTextChangeHandler(TextChangeListener handler) {

@@ -33,6 +33,22 @@ public class AutocompleteField<E> extends AbstractTextField implements Autocompl
         return (AutocompleteState) super.getState();
     }
 
+    public void setDelay(int delayMillis) {
+        getState().delayMillis = delayMillis;
+    }
+
+    public void setTabIndex(int tabIdx) {
+        getState().tabIndex = tabIdx;
+    }
+
+    public void setEnabled(boolean enabled) {
+        getState().enabled = enabled;
+    }
+
+    public void setTrimQuery(boolean trimQuery) {
+        getState().trimQuery = trimQuery;
+    }
+
     public void onQuery(String query) {
         clearChoices();
         if (queryListener != null) {
@@ -55,35 +71,19 @@ public class AutocompleteField<E> extends AbstractTextField implements Autocompl
         this.suggestionPickedListener = listener;
     }
 
-    public void setDelay(int delayMillis) {
-        getState().delayMillis = delayMillis;
-    }
-
-    public void setTabIndex(int tabIdx) {
-        getState().tabIndex = tabIdx;
-    }
-
-    public void setEnabled(boolean enabled) {
-        getState().enabled = enabled;
-    }
-
     public void addSuggestion(E id, String value, String displayedValue) {
         int index = getState().suggestions.size();
         items.put(index, id);
-        List<AutocompleteFieldSuggestion> newSuggestionList = new ArrayList<AutocompleteFieldSuggestion>(getState().suggestions);
+        if (index == 0) getState().suggestions = new ArrayList<>();
         AutocompleteFieldSuggestion suggestion = new AutocompleteFieldSuggestion();
         suggestion.setId(index);
         suggestion.setValue(value);
         suggestion.setDisplayValue(displayedValue);
-        newSuggestionList.add(suggestion);
-        getState().suggestions = newSuggestionList;
+        getState().suggestions.add(suggestion);
     }
 
     public void setMinimumQueryCharacters(int minimumQueryCharacters) {
         getState().minimumQueryCharacters = minimumQueryCharacters;
     }
 
-    public void setTrimQuery(boolean trimQuery) {
-        getState().trimQuery = trimQuery;
-    }
 }
